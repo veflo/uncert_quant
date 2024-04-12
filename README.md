@@ -1,6 +1,6 @@
 # Project description:
 
-This study examines the potential and limitations of transfer learning using simulated or synthetic data. It seeks to answer key questions like: When can machine learning models effectively transition from similar or synthetic data to real-world data? How similar must the datasets be for successful transfer learning? What uncertainties arise from differences between train and test data? 
+This project investigates the potential and limitations of transfer learning using simulated or synthetic data. It seeks to answer key questions like: When can machine learning models effectively transition from similar or synthetic data to real-world data? How similar must the datasets be for successful transfer learning? What uncertainties arise from differences between train and test data? 
 
 Motivated by the widespread adoption of machine learning, this project addresses a critical challenge: the difficulty models face when extrapolating beyond their training domain. This phenomenon, often referred to as covariate shift, results from differences in distribution between training and test data, undermining model generalization. Despite its recognition in statistical literature, covariate shift has received less attention in the machine learning community. Additionally, this study distinguishes between covariate shift, which concerns differences in the input data distribution, and target drift, which involves changes in the relationship between input variables and the target variable.
 
