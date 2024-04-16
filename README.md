@@ -4,7 +4,8 @@ This project investigates the potential and limitations of transfer learning usi
 
 Motivated by the widespread adoption of machine learning, this project addresses a critical challenge: the difficulty models face when extrapolating beyond their training domain. This phenomenon, often referred to as covariate shift, results from differences in distribution between training and test data, undermining model generalization. Despite its recognition in statistical literature, covariate shift has received less attention in the machine learning community. Additionally, this study distinguishes between covariate shift, which concerns differences in the input data distribution, and target drift, which involves changes in the relationship between input variables and the target variable.
 
-
+**NOTE:** 
+The interactive figures in the jupyter notebook are not rendered properly on GitHub. You can either run the notebook locally, or download the html version which contains all figures/plots rendered properly. 
 
 ## Experiment 1: Changes in feature-target correlations
 
