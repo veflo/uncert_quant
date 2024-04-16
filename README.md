@@ -31,7 +31,7 @@ To investigate this, we employ the "ideal gas" approximation to generate synthet
 Experiment 2 investigates changes in the feature distribution and their impact on model accuracy and uncertainty, with a focus on quantifying these properties.
 
 **Significance**:
-Changes in pressure, temperature, or other properties over time can lead to shifts in the feature distribution, known as covariate shift. Detecting when the model operates outside the range of its training distribution, and understanding its implications for accuracy and uncertainty in predictions, is essential for maintaining model reliability in real-world applications.
+In dynamical real-world systems, changes in pressure, temperature, or other properties over time can lead to shifts in the feature distribution, known as covariate shift. Detecting when the model operates outside the range of its training distribution, and understanding the implications for accuracy and uncertainty in the predictions, is essential for maintaining model reliability in real-world applications.
 
 **Methodology**:
 We simulate changes in the feature distribution between the training and test datasets using the ideal gas approximation. For each data point in the test set, we quantify how far its feature values deviate from the training data distribution using the Mahalanobis distance.
