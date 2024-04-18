@@ -8,8 +8,8 @@ Motivated by the widespread adoption of machine learning, this project addresses
 The interactive figures in the jupyter notebook are not rendered properly on GitHub. There are a few options to overcome this: 
 - Run the notebook locally
 - Download and open the html version of the notebook
-- Paste the link to the location of the jupyter notebook on https://nbviewer.org/ to have it rendered there  (i.e. the link https://github.com/veflo/uncert_quant/blob/main/data_distribution_experiments.ipynb )
-
+- Paste the link to the location of the jupyter notebook on https://nbviewer.org/ to have it rendered there: https://nbviewer.org/github/veflo/uncert_quant/blob/main/data_distribution_experiments.ipynb
+  
 ## Experiment 1: Changes in feature-target correlations
 
 **Objective**:
