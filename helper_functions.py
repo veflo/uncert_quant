@@ -73,18 +73,17 @@ def calculate_pressure(V, n, T, a, b):
     Calculate the pressure of an ideal gas using the Van der Waals equation.
 
     Args:
-    - V (float): Volume of the gas in cubic meters (m^3).
+    - V (float): Volume of the gas in Liters (L).
     - n (float): Amount of substance of the gas in moles (mol).
     - T (float): Temperature of the gas in Kelvin (K).
-    - a (float): Van der Waals parameter related to the attraction between gas particles (Pa·m^6/mol^2).
-    - b (float): Van der Waals parameter related to the volume occupied by gas particles (m^3/mol).
+    - a (float): Van der Waals parameter related to the attraction between gas particles (L^2·atm/mol^2).
+    - b (float): Van der Waals parameter related to the volume occupied by gas particles (L/mol).
 
     Returns:
-    - float: The pressure of the gas in Pascals (Pa).
+    - float: The pressure of the gas in atmospheres (atm).
     """
-    R = 8.314  # Gas constant in J/(mol·K)
-    return (n * R * T) / (V - n * b) - a * (n ** 2) / (V ** 2)
-
+    R = 0.0821  # Gas constant in L·atm/(mol·K)
+    return (n * R * T) / (V - n*b) - (a * (n ** 2)) / (V ** 2)
 
 
 def generate_dataset(num_samples, V_mean, V_std, n_mean, n_std, T_mean, T_std, a, b):
@@ -99,15 +98,15 @@ def generate_dataset(num_samples, V_mean, V_std, n_mean, n_std, T_mean, T_std, a
     - n_std (float): Standard deviation of the amount of substance of the gas in moles (mol).
     - T_mean (float): Mean temperature of the gas in Kelvin (K).
     - T_std (float): Standard deviation of the temperature of the gas in Kelvin (K).
-    - a (float): Van der Waals parameter related to the attraction between gas particles (Pa·m^6/mol^2).
-    - b (float): Van der Waals parameter related to the volume occupied by gas particles (m^3/mol).
+    - a (float): Van der Waals parameter related to the attraction between gas particles (L^2·atm/mol^2)
+    - b (float): Van der Waals parameter related to the volume occupied by gas particles (L/mol).
 
     Returns:
     - pandas.DataFrame: Generated dataset with columns:
         - 'Volume (L)': Volume of the gas in liters (L).
         - 'Moles': Amount of substance of the gas in moles (mol).
         - 'Temperature (K)': Temperature of the gas in Kelvin (K).
-        - 'Pressure (Pa)': Pressure of the gas in Pascals (Pa).
+        - 'Pressure (atm)': Pressure of the gas in atmospheres (atm).
     """
 
     data = []
@@ -121,7 +120,7 @@ def generate_dataset(num_samples, V_mean, V_std, n_mean, n_std, T_mean, T_std, a
         pressure = calculate_pressure(V, n, T, a, b)
         
         data.append((V, n, T, pressure))
-    return pd.DataFrame(data, columns=['Volume (L)', 'Moles', 'Temperature (K)', 'Pressure (Pa)'])
+    return pd.DataFrame(data, columns=['Volume (L)', 'Moles', 'Temperature (K)', 'Pressure (atm)'])
 
 
 
@@ -411,8 +410,8 @@ def get_train_test_data(datasets):
     # Split training data into train and test sets for "in distribution" testing
     train_dataset_key = next(iter(datasets)) # First item of 'datasets' represents training data
     X_train, X_test_id, y_train_id, y_test_id = train_test_split(
-        datasets[train_dataset_key].drop(columns=['Pressure (Pa)']),
-        datasets[train_dataset_key]['Pressure (Pa)'],
+        datasets[train_dataset_key].drop(columns=['Pressure (atm)']),
+        datasets[train_dataset_key]['Pressure (atm)'],
         test_size=0.3,
         random_state=42
     )
@@ -428,10 +427,10 @@ def get_train_test_data(datasets):
     for gas, df in datasets.items():
         if gas != train_dataset_key:
             # Drop the 'Pressure (Pa)' column from the test data
-            X_test = df.drop(columns=['Pressure (Pa)'])
+            X_test = df.drop(columns=['Pressure (atm)'])
             # Scale the features using the scaler fitted to the training data
             X_test_ood_scaled[gas] = scaler.transform(X_test)
-            y_test_ood[gas] = df['Pressure (Pa)']
+            y_test_ood[gas] = df['Pressure (atm)']
 
     return X_train_scaled, X_test_id_scaled, y_train_id, y_test_id, X_test_ood_scaled, y_test_ood
 
